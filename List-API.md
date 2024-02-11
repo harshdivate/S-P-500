@@ -26,6 +26,103 @@ const response = await axios.get('https://api.nasdaq.com/api/quote/ACN/summary',
 
 ```
 Response :
+{
+    "data": {
+        "symbol": "ABBV",
+        "summaryData": {
+            "Exchange": {
+                "label": "Exchange",
+                "value": "NYSE"
+            },
+            "Sector": {
+                "label": "Sector",
+                "value": "Health Care"
+            },
+            "Industry": {
+                "label": "Industry",
+                "value": "Biotechnology: Pharmaceutical Preparations"
+            },
+            "OneYrTarget": {
+                "label": "1 Year Target",
+                "value": "$180.00"
+            },
+            "TodayHighLow": {
+                "label": "Today's High/Low",
+                "value": "$175.40/$173.05"
+            },
+            "ShareVolume": {
+                "label": "Share Volume",
+                "value": "3,502,661"
+            },
+            "AverageVolume": {
+                "label": "Average Volume",
+                "value": "7,233,543"
+            },
+            "PreviousClose": {
+                "label": "Previous Close",
+                "value": "$174.79"
+            },
+            "FiftTwoWeekHighLow": {
+                "label": "52 Week High/Low",
+                "value": "$175.91/$130.9601"
+            },
+            "MarketCap": {
+                "label": "Market Cap",
+                "value": "307,344,754,248"
+            },
+            "PERatio": {
+                "label": "P/E Ratio",
+                "value": 63.77
+            },
+            "ForwardPE1Yr": {
+                "label": "Forward P/E 1 Yr.",
+                "value": "15.69"
+            },
+            "EarningsPerShare": {
+                "label": "Earnings Per Share(EPS)",
+                "value": "$2.73"
+            },
+            "AnnualizedDividend": {
+                "label": "Annualized Dividend",
+                "value": "$6.20"
+            },
+            "ExDividendDate": {
+                "label": "Ex Dividend Date",
+                "value": "Jan 12, 2024"
+            },
+            "DividendPaymentDate": {
+                "label": "Dividend Pay Date",
+                "value": "Feb 15, 2024"
+            },
+            "Yield": {
+                "label": "Current Yield",
+                "value": "3.56%"
+            },
+            "Beta": {
+                "label": "Beta",
+                "value": 0.0
+            }
+        },
+        "assetClass": "STOCKS",
+        "additionalData": null,
+        "bidAsk": {
+            "Bid * Size": {
+                "label": "Bid * Size",
+                "value": "N/A"
+            },
+            "Ask * Size": {
+                "label": "Ask * Size",
+                "value": "N/A"
+            }
+        }
+    },
+    "message": null,
+    "status": {
+        "rCode": 200,
+        "bCodeMessage": null,
+        "developerMessage": null
+    }
+}
 ```
 
 ## API to get Divident Details
@@ -1460,6 +1557,160 @@ Response
                 ]
             }
         }
+    },
+    "message": null,
+    "status": {
+        "rCode": 200,
+        "bCodeMessage": null,
+        "developerMessage": null
+    }
+}
+```
+
+## API for SEC Fillings
+
+```
+import axios from 'axios';
+
+const response = await axios.get('https://api.nasdaq.com/api/company/ABBV/sec-filings', {
+  params: {
+    'limit': '14',
+    'sortColumn': 'filed',
+    'sortOrder': 'desc',
+    'FormGroup': 'Quarterly Reports',
+    'Year': '2013',
+    'IsQuoteMedia': 'true'
+  },
+  headers: {
+    'authority': 'api.nasdaq.com',
+    'accept': 'application/json, text/plain, */*',
+    'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+    'origin': 'https://www.nasdaq.com',
+    'referer': 'https://www.nasdaq.com/',
+    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-site',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+  }
+});
+```
+
+```
+API FORMAT
+
+limit: 14
+sortColumn: filed
+sortOrder: desc
+FormGroup: Annual Reports
+FormType: 10-K
+Year: 2014
+IsQuoteMedia: true
+```
+
+## Response
+
+```
+{
+    "data": {
+        "symbol": "ABBV",
+        "totalRecords": 1,
+        "latest": [
+            {
+                "label": "10-K",
+                "value": "https://app.quotemedia.com/data/downloadFiling?webmasterId=90423&ref=117263909&type=HTML&symbol=ABBV&companyName=AbbVie+Inc.&formType=10-K&formDescription=Annual+report+pursuant+to+Section+13+or+15%28d%29&dateFiled=2023-02-17"
+            },
+            {
+                "label": "10-Q",
+                "value": "https://app.quotemedia.com/data/downloadFiling?webmasterId=90423&ref=317844769&type=HTML&symbol=ABBV&cdn=5c0cc5a89033399d8071d36813725bc1&companyName=AbbVie+Inc.&formType=10-Q&formDescription=General+form+for+quarterly+reports+under+Section+13+or+15%28d%29&dateFiled=2023-11-06"
+            }
+        ],
+        "headers": {
+            "companyName": "Company Name",
+            "formType": "Form Type",
+            "filed": "Filed",
+            "period": "Period",
+            "view": "View"
+        },
+        "filterOptions": [
+            {
+                "group": "All",
+                "formtype": []
+            },
+            {
+                "group": "Annual Reports",
+                "formtype": [
+                    "10-K",
+                    "ARS"
+                ]
+            },
+            {
+                "group": "Quarterly Reports",
+                "formtype": [
+                    "10-Q"
+                ]
+            },
+            {
+                "group": "Proxies and Info Statements",
+                "formtype": [
+                    "PX14A6G",
+                    "DEF 14A",
+                    "DEFA14A"
+                ]
+            },
+            {
+                "group": "Insider Transactions",
+                "formtype": [
+                    "4",
+                    "3",
+                    "SC 13G/A"
+                ]
+            },
+            {
+                "group": "8-K Related",
+                "formtype": [
+                    "8-K"
+                ]
+            },
+            {
+                "group": "Registration Statements",
+                "formtype": [
+                    "S-1",
+                    "S-1A",
+                    "424B4",
+                    "FWP",
+                    "S-8"
+                ]
+            },
+            {
+                "group": "Comment Letters",
+                "formtype": [
+                    "NO ACT",
+                    "UPLOAD",
+                    "CORRESP"
+                ]
+            }
+        ],
+        "rows": [
+            {
+                "companyName": "AbbVie Inc.",
+                "reportingOwner": "",
+                "formType": "10-K",
+                "filed": "02/16/2018",
+                "period": "",
+                "view": {
+                    "htmlLink": "https://app.quotemedia.com/data/downloadFiling?webmasterId=90423&ref=100185654&type=HTML&symbol=ABBV&companyName=AbbVie+Inc.&formType=10-K&formDescription=Annual+report+pursuant+to+Section+13+or+15%28d%29&dateFiled=2018-02-16",
+                    "docLink": "https://app.quotemedia.com/data/downloadFiling?webmasterId=90423&ref=100185654&type=DOC&symbol=ABBV&companyName=AbbVie+Inc.&formType=10-K&formDescription=Annual+report+pursuant+to+Section+13+or+15%28d%29&dateFiled=2018-02-16",
+                    "pdfLink": "https://app.quotemedia.com/data/downloadFiling?webmasterId=90423&ref=100185654&type=PDF&symbol=ABBV&companyName=AbbVie+Inc.&formType=10-K&formDescription=Annual+report+pursuant+to+Section+13+or+15%28d%29&dateFiled=2018-02-16",
+                    "xbrLink": "https://api.quotemedia.com/supplement/filings/index.php?webmasterId=90423&ref=100185654&type=XBRL&symbol=ABBV&companyName=AbbVie%20Inc.&formType=10-K&formDescription=Annual%20report%20pursuant%20to%20Section%2013%20or%2015(d)&dateFiled=2018-02-16",
+                    "ixbrlContent": "",
+                    "xlsLink": "https://app.quotemedia.com/data/downloadFiling?webmasterId=90423&ref=100185654&type=XLS&symbol=ABBV&companyName=AbbVie+Inc.&formType=10-K&formDescription=Annual+report+pursuant+to+Section+13+or+15%28d%29&dateFiled=2018-02-16",
+                    "xBrlSubDoc": ""
+                }
+            }
+        ]
     },
     "message": null,
     "status": {
