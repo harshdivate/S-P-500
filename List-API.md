@@ -125,6 +125,97 @@ Response :
 }
 ```
 
+### API to get company-profile
+
+```
+import axios from 'axios';
+
+const response = await axios.get('https://api.nasdaq.com/api/company/MMM/company-profile', {
+  headers: {
+    'authority': 'api.nasdaq.com',
+    'accept': 'application/json, text/plain, */*',
+    'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+    'origin': 'https://www.nasdaq.com',
+    'referer': 'https://www.nasdaq.com/',
+    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-site',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+  }
+});
+```
+
+```
+Response
+{
+    "data": {
+        "ModuleTitle": {
+            "label": "Module Title",
+            "value": "Company Description"
+        },
+        "CompanyName": {
+            "label": "Company Name",
+            "value": "3M Company"
+        },
+        "Symbol": {
+            "label": "Symbol",
+            "value": "MMM"
+        },
+        "Address": {
+            "label": "Address",
+            "value": "3M CENTER, ST. PAUL, Minnesota, 55144, United States"
+        },
+        "Phone": {
+            "label": "Phone",
+            "value": "+1 651 733-1110"
+        },
+        "Industry": {
+            "label": "Industry",
+            "value": "Medical/Dental Instruments"
+        },
+        "Sector": {
+            "label": "Sector",
+            "value": "Health Care"
+        },
+        "Region": {
+            "label": "Region",
+            "value": "North America"
+        },
+        "CompanyDescription": {
+            "label": "Company Description",
+            "value": "3M is a multinational conglomerate that has operated since 1902 when it was known as Minnesota Mining and Manufacturing. The company is well-known for its research and development laboratory, and the firm leverages its science and technology across multiple product categories. As of 2020, 3M is organized into four business segments: safety and industrial, transportation and electronics, healthcare, and consumer. Nearly 50% of the company's revenue comes from outside the Americas, with the safety and industrial segment constituting a plurality of the firm's net sales. Many of the company's 60,000-plus products touch and concern a variety of consumers and end markets."
+        },
+        "CompanyUrl": {
+            "label": "Company Url",
+            "value": "https://www.3m.com"
+        },
+        "KeyExecutives": {
+            "label": "Key Executives",
+            "value": [
+                {
+                    "name": "John Patrick Banovetz",
+                    "title": "CTO & EVP-Environmental Responsibility"
+                },
+                {
+                    "name": "Michael F. Roman",
+                    "title": "Chairman & Chief Executive Officer"
+                }
+            ]
+        }
+    },
+    "message": null,
+    "status": {
+        "rCode": 200,
+        "bCodeMessage": null,
+        "developerMessage": null
+    }
+}
+
+```
+
 ## API to get Divident Details
 
 ```
